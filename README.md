@@ -73,6 +73,7 @@ Installation path   /data/debian
 Username (print3D) respetar este usuario para los siguientes comandos
 
 User password: (123456) respetar o mofificar en caso de que haga falta ////ESTO SE USAR PARA INGRESAR POR SSH O WEB
+
 INIT (enable)
 
 Init system (sysV)
