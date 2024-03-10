@@ -4,15 +4,15 @@
 
 SE NECESITAN LAS SIGUIENTES HERRAMIENTAS:
 
--CONTAR CON UN CELULAR ROOT(TENER HABILITADO EL SUPERUSUARIO) APLICACIÓN MAGISC PARA MANEJAR ROOT O ALGUN OTRO PROGRAMA DE PERMISOS ROOT//// USUARIOS AVANZADOS
+-Contar con un celular root (tener habilitado el superusuario) aplicación Magisc para manejar root o algún otro programa de permisos root//// USUARIOS AVANZADOS
 
--CONTAR CON UN OTG (PARA CONECTAR CELULAR A IMPRESORA 3D)
+-Contar con un OTG (para conectar celular a impresora 3d)
 
--CABLE USB CON FICHA SEGUN PLACA DE IMPRESORA 3D
+-Cable USB con ficha según placa de impresora 3d
 
--UNA VEZ INSTALADO KLIPPER SE PUEDE GENERAR EL ARCHIVO .BIN DESDE KIAUH EL CUAL HAY QUE INTRODUCIR EN LA IMPRESORA Y ENCENDER PARA ACTUALIZAR EL FIRMWARE (NO TODAS LAS IMPRESORAS SON COMPATIBLES). 
+-Al finalizar la instalación de Klipper se puede generar el archivo (.bin), el cual hay que introducir en la impresora y encender para actualizar el firmware (no todas las impresoras son compatibles). 
 
-¡¡¡CON KLIPPER LA PANTALLA DE LA IMPRESORA PUEDA QUEDAR SIN DAR IMAGEN PORQUE USA LA DEL CELULAR PARA EL MENU. SI SE VUELVE A MARLIN ESTARA OPERATIVA NUEVAMENTE!!!
+¡¡¡Con klipper la pantalla de la impresora pueda quedar sin dar imagen porque usa la del celular para el menu. Si se vuelve a marlin el firmware estara operativa nuevamente!!! Se recomienda desconexión de display de mainboard
 
 //// APLICACIONES PARA ANDROID ////
 
@@ -26,7 +26,7 @@ kerneladiutor_248.apk link: https://f-droid.org/en/packages/com.nhellfire.kernel
 /// SIRVE PARA MEJORAR RENDIMIENTO ////
 
 termux_118.apk SE INSTALA DE F-DROID O DEL PLAY STORE, link: https://github.com/termux/termux-app/releases/tag/v0.118.0  
-///ES LA TERMINAL QUE SIRVE MEDIANTE COMANDOS PARA AVERIGUAR EL PUERTO AL QUE SE CONECTO OCTOPRINT CON LA IMPRESORA 3D MEDIANTE EL OTG
+///ES LA TERMINAL QUE SIRVE PARA AVERIGUAR MEDIANTE COMANDOS EL PUERTO AL QUE SE CONECTO OCTOPRINT CON LA IMPRESORA 3D MEDIANTE EL OTG
 
 octo4a-1.2.5.apk link, https://github.com/feelfreelinux/octo4a/releases/download/1.2.5/octo4a-1.2.5.apk    
 ////SIRVE PARA USAR EL PUERTO OTG DEL CELULAR CON LA IMPRESORA Y USAR LA CAMARA PARA HACER TIMELAPSE O VERLA MEDIANTE LA WEB ////
@@ -40,7 +40,7 @@ WIN SCP link: https://winscp.net/eng/downloads.php
 ///DESCARGAR ARCHIVO MODIFICADO ///
 link: 
 
-- ABRIR LA APLICACION XSDL Y PRESIONAR BOTON SUPERIOR APENAS INICIA CONFIGURAR Mouse Simulation / Mouse Simulation Mode / Desktop version, no simulation
+- Abrir la aplicacion XSDL y presionar botón superior apenas inicia. Configurar mouse simulation / mouse simulation mode / desktop version, no simulation
 - ABRIR LINUX DEPLOY Y CONFIGURAR PROGRAMA ![image](https://github.com/Tronix3d/ARPRINT3D/assets/15800124/4eb011d2-9bb0-4b8b-af16-4a8d1c1d0766)
 
 Lock screen (no)
@@ -86,10 +86,10 @@ Graphics subsystem (X11)
 Desktop environment (XTerm)
 
 
--ABRIR HERRAMIENTA PUTTY DESDE WINDOWS PARA ENVIAR COMANDOS EN SSH
+-Abrir herramienta PUTTY desde windows para enviar comandos en ssh
 
 /// USAR PUERTO IP QUE MUESTRA LA APLICACION LINUX DEPLOY PARA USAR EN PUTTY ///
-USAR USUARIO: print3D CONTRASEÑA 123456
+-	Utilizar USUARIO: print3D CONTRASEÑA 123456
 
 (Copiar siguientes comandos en orden con Control + C y en putty presionar click derecho para pegar) luego presionar ENTER
 
@@ -106,6 +106,13 @@ COMANDOS SSH:
 5- git clone https://github.com/th33xitus/kiauh.git
 
 6- kiauh/kiauh.sh
+
+//////////////////////////////////////////////////////////
+INSTALAR KLIPPER CON - OPCION 1 - 1 - 1
+INSTALAR MOONRAKER - OPCION 2
+INSTALAR FLUIDD - OPCION 4
+INSTALAR KLIPPER SCREEN - OPCION 5
+/////////////////////////////////////////////////////////
 
 7- rm /home/print3D/printer_data/config/*
 
@@ -125,9 +132,9 @@ COMANDOS SSH:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-- ABRIR OCTOPRINT Y CONECTAR IMPRESORA AL OTG MEDIANTE EL USB
-- FRENAR SERVICIO DE OCTOPRINT
-- ABRIR TERMUX Y ENVIAR SIGUIENTE COMANDOS PARA SABER EL PUERTO DONDE ESTA CONECTADA LA IMPRESORA
+- Abrir OCTOPRINT y conectar impresora al OTG mediante el USB
+- Detener servicio de OCTOPRINT
+- Abrir TERMUX y enviar siguientes comandos para saber el puerto donde está conectada la impresora
 
   1- pkg install tsu
   
@@ -149,20 +156,21 @@ COMANDOS SSH:
 
 19- bash configuration_klipper_family.sh
 
-- PARAR SERVICIO EN LINUX DEPLOY Y LUEGO EJECUTARLO CON START
-- COLOCAR IP DE LINUX DEPLOY EN EL NAVEGADOR DE WINDOWS
-- USUARIO: print3D PASSWORD: 123456
-- IR A LA OPCION DE {...} CONFIGURACION DEL LADO IZQUIERDO
-- IR A CONFIG_EXAMPLES
-- BUSCAR MODELO DE IMPRESORA 3D Y ABRIR EL ARCHIVO HACIENDO CLICK
-- COPIAR EL TODO EL CONTENIDO DEL ARCHIVO
-- CERRAR ARCHIVO
-- ABRIR ARCHIVO PRINTER.CFG
-- BORRAR TODO EL CONTENIDO Y PEGAR EL QUE COPIAMOS
-- BUSCAR EN EL TEXTO
+- Detener servicio en LINUX DEPLOY y luego ejecutarlo con start
+- Colocar ip de LINUX DEPLOY en el navegador de windows
+- usuario: print3d password: 123456
+- Ir a la opcion de {...} configuracion del lado izquierdo
+- Ir a CONFIG_EXAMPLES
+- Buscar modelo de impresora 3d y abrir el archivo haciendo click
+- Copiar el todo el contenido del archivo
+- Cerrar archivo
+- Abrir archivo PRINTER.CFG
+- Borrar todo el contenido y pegar el que copiamos
+- Buscar en el texto
   [mcu]
   serial: /dev/pts/0 ////CAMBIAR 0 POR PUERTO QUE CORRESPONDA DE TERMUX
-- REINICIAR KLIPPER
-- SINO FUNCIONA DETENEMOS LINUX DEPLOY Y LO VOLVEMOS A INICIAR
+- Reiniciar klipper
+- Si no funciona detenemos LINUX DEPLOY y lo volvemos a iniciar
+
   
 
