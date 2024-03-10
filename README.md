@@ -108,10 +108,11 @@ COMANDOS SSH:
 6- kiauh/kiauh.sh
 
 //////////////////////////////////////////////////////////
-INSTALAR KLIPPER CON - OPCION 1 - 1 - 1
-INSTALAR MOONRAKER - OPCION 2
-INSTALAR FLUIDD - OPCION 4
-INSTALAR KLIPPER SCREEN - OPCION 5
+- INSTALAR KLIPPER CON - OPCION 1 - 1 - 1
+- INSTALAR MOONRAKER - OPCION 2
+- INSTALAR FLUIDD - OPCION 4
+- INSTALAR KLIPPER SCREEN - OPCION 5
+  
 /////////////////////////////////////////////////////////
 
 7- rm /home/print3D/printer_data/config/*
