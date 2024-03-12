@@ -183,7 +183,7 @@ COMANDOS SSH:
 - Si no funciona detenemos LINUX DEPLOY y lo volvemos a iniciar
 - Si salen advertencias en amarillo modificar nuevamente archivo printer.cfg y agregar el siguiente codigo:
   
-//////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////// INICIO
 
 
 [virtual_sdcard]
@@ -258,7 +258,7 @@ gcode:
   CANCEL_PRINT_BASE
 
 
-/////////////////////////////////////////////////
+///////////////////////////////////////////////// FIN
 
 20- VER PARTE SUPERIOR DE ARCHIVO CONFIG.CFG Y SACAR INFORMACION DE MICROCONTROLADOR PARA PODER CREAR ARCHIVO .BIN PARA ACTUALIZAR FIRMWARE DE IMPRESORA 3D
 
