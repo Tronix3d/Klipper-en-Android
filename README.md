@@ -141,27 +141,26 @@ COMANDOS SSH:
 
 14- sudo wget https://raw.githubusercontent.com/gaifeng8864/klipper-on-android/main/configuration_klipper_family.sh
 
+15- sudo nano configuration_klipper_family.sh
+
+16 - seguir los siguientes pasos para editar archivo anterior
+
 ///////////////////////////////////////////////////////////////////////////////
 
-- Abrir OCTOPRINT y conectar impresora al OTG mediante el USB
+- Abrir OCTOPRINT e instalarlo en android
+- Una vez que termine la instalación conectar impresora al OTG mediante el USB
 - Detener servicio de OCTOPRINT
 - Abrir TERMUX y enviar siguientes comandos para saber el puerto donde está conectada la impresora
 
   1- pkg install tsu
   
   2- sudo ls -al /data/data/com.octo4a/files/serialpipe
+
+  (entrega el puerto a donde debemos conectarnos /dev/pts/0) este puede variar
   
 ///////////////////////////////////////////////////////////////////////////////
-
-- DESACARGAR ARCHIVO DE REPOSITORIO Y REEMPLAZAR configuration_klipper_family.sh CON WIN SCP   (SINO EJECUTAR LOS PASOS 15, 16 , 17, 18, 19)
-
-/////////////////////////////////////////////////////////////////////////////////
-
-15- sudo nano configuration_klipper_family.sh
-
-16- modificar "/dev/pts/0" (Cambiar 0 por el numero que aroja termux al enviar comando (sudo ls -al /data/data/com.octo4a/files/serialpipe) )
-
-17-modificar chmod 777 /dev/pts/0  (Cambiar 0 por el numero que aroja termux al enviar comando (sudo ls -al /data/data/com.octo4a/files/serialpipe) )
+ 
+17- reemplaza /dev/ttyACM0 por "/dev/pts/0" (Cambiar 0 por el numero que aroja termux al enviar comando (sudo ls -al /data/data/com.octo4a/files/serialpipe) )
 
 18- salir con CONTROL+X, guardar archivo YES y sobreescribir presionando ENTER
 
@@ -182,6 +181,99 @@ COMANDOS SSH:
   serial: /dev/pts/0 ////CAMBIAR 0 POR PUERTO QUE CORRESPONDA DE TERMUX
 - Reiniciar klipper
 - Si no funciona detenemos LINUX DEPLOY y lo volvemos a iniciar
+- Si salen advertencias en amarillo modificar nuevamente archivo printer.cfg y agregar el siguiente codigo:
+  
+//////////////////////////////////////////////////////////////////
+
+
+[virtual_sdcard]
+path: /home/print3D/printer_data/gcodes
+
+[display_status]
+
+[pause_resume]
+
+[gcode_macro PAUSE]
+description: Pause the actual running print
+rename_existing: PAUSE_BASE
+# change this if you need more or less extrusion
+variable_extrude: 1.0
+gcode:
+  ##### read E from pause macro #####
+  {% set E = printer["gcode_macro PAUSE"].extrude|float %}
+  ##### set park positon for x and y #####
+  # default is your max posion from your printer.cfg
+  {% set x_park = printer.toolhead.axis_maximum.x|float - 5.0 %}
+  {% set y_park = printer.toolhead.axis_maximum.y|float - 5.0 %}
+  ##### calculate save lift position #####
+  {% set max_z = printer.toolhead.axis_maximum.z|float %}
+  {% set act_z = printer.toolhead.position.z|float %}
+  {% if act_z < (max_z - 2.0) %}
+      {% set z_safe = 2.0 %}
+  {% else %}
+      {% set z_safe = max_z - act_z %}
+  {% endif %}
+  ##### end of definitions #####
+  PAUSE_BASE
+  G91
+  {% if printer.extruder.can_extrude|lower == 'true' %}
+    G1 E-{E} F2100
+  {% else %}
+    {action_respond_info("Extruder not hot enough")}
+  {% endif %}
+  {% if "xyz" in printer.toolhead.homed_axes %}
+    G1 Z{z_safe} F900
+    G90
+    G1 X{x_park} Y{y_park} F6000
+  {% else %}
+    {action_respond_info("Printer not homed")}
+  {% endif %} 
+
+[gcode_macro RESUME]
+description: Resume the actual running print
+rename_existing: RESUME_BASE
+gcode:
+  ##### read E from pause macro #####
+  {% set E = printer["gcode_macro PAUSE"].extrude|float %}
+  #### get VELOCITY parameter if specified ####
+  {% if 'VELOCITY' in params|upper %}
+    {% set get_params = ('VELOCITY=' + params.VELOCITY)  %}
+  {%else %}
+    {% set get_params = "" %}
+  {% endif %}
+  ##### end of definitions #####
+  {% if printer.extruder.can_extrude|lower == 'true' %}
+    G91
+    G1 E{E} F2100
+  {% else %}
+    {action_respond_info("Extruder not hot enough")}
+  {% endif %}  
+  RESUME_BASE {get_params}
+
+[gcode_macro CANCEL_PRINT]
+description: Cancel the actual running print
+rename_existing: CANCEL_PRINT_BASE
+gcode:
+  TURN_OFF_HEATERS
+  CANCEL_PRINT_BASE
+
+
+/////////////////////////////////////////////////
+
+20- VER PARTE SUPERIOR DE ARCHIVO CONFIG.CFG Y SACAR INFORMACION DE MICROCONTROLADOR PARA PODER CREAR ARCHIVO .BIN PARA ACTUALIZAR FIRMWARE DE IMPRESORA 3D
+21- EN LA CONSOLA DE PUTTY ENVIAR NUEVAMENTE LO SIGUIENTE
+22- kiauh/kiauh.sh
+![image](https://github.com/Tronix3d/Klipper-en-Android/assets/15800124/d31847a0-36c0-4dc8-a012-e2edd5c71098)
+23- OPCION 4
+24- OPCION 2
+![image](https://github.com/Tronix3d/Klipper-en-Android/assets/15800124/6442a93d-324d-4312-a1ae-a7c65dc15e59)
+25- CONFIGURAR PARAMETROS
+![image](https://github.com/Tronix3d/Klipper-en-Android/assets/15800124/4485b55a-b110-4ec1-a0c9-4f322884b232)
+26- PRESIONAR Q - ENTER Y GUARDAR CON Y (ESTO GENERA UN ARCHIVO .BIN PARA GUARDAR EN LA MICRO SD)
+27- ABRIR PROGRAMA WIN SCP EN WINDOWS Y COPIAR EL ARCHIVO 
+
+
+
 
   
 
