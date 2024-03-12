@@ -61,7 +61,7 @@ Las demas opciones en default
 
 Distribution (Debian)
 
-Architecture (armhf) (revisar la arquitectura de tu celular, si soporta 64 bits, cambiar por arm64
+Architecture (armhf) (revisar la arquitectura de tu celular, si soporta 64 bits, cambiar por arm64)
 
 Distribution suite (oldstable)
 
@@ -84,6 +84,9 @@ GUI (enabled)
 Graphics subsystem (X11)
 
 Desktop environment (XTerm)
+
+/////IR AL BOTON SUPERIOR DERECHO Y PRESIONAR INSTALAR, PARA QUE SE CARGUE DEBIAN EN LINUX DEPLOY.
+UNA VEZ QUE TERMINA, PRESIONAR STOP Y PRESIONAR START ///
 
 
 -Abrir herramienta PUTTY desde windows para enviar comandos en ssh
